@@ -1,0 +1,31 @@
+@use 'src/styles/modules/variables.scss' as *;
+
+.button {
+  border-radius: 2px;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.45));
+  font: {
+    weight: bold;
+    size: 18px;
+  }
+  line-height: 25px;
+  text-align: center;
+  border: none;
+}
+
+.primary {
+  background-color: $blue;
+  color: $white;
+  &:disabled {
+    background-color: $disabled-blue;
+    color: $disabled-gray;
+  }
+}
+
+.secondary {
+  background-color: $white;
+  color: $blue;
+  &:disabled {
+    background-color: $disabled-gray;
+    color: $disabled-blue;
+  }
+}
