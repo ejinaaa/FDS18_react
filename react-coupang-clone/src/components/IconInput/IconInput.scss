@@ -1,0 +1,17 @@
+@use 'src/styles/modules/variables.scss' as *;
+
+.iconInputContainer {
+  display: flex;
+  width: 575px;
+  height: 63px;
+  border: 1px solid $light-gray;
+
+  .inputContainer {
+    flex-grow: 1;
+    float: right;
+  }
+
+  .iconContainer {
+    width: 45px;
+  }
+}
