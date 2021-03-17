@@ -1,0 +1,40 @@
+@use 'src/styles/modules/variables.scss' as *;
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $dark-gray;
+  margin-right: 6px;
+
+  &::before {
+    content: '';
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: {
+      image: url(./images/checked=false.svg);
+      repeat: no-repeat;
+      position: center;
+      size: contain;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.checked::before {
+  background-image: url(./images/checked=true.svg);
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: $medium-gray;
+
+  ::before {
+    background-image: url(./images/checked=true-disabled=true.svg);
+  }
+}
