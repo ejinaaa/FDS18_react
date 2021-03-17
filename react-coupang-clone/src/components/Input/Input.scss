@@ -1,0 +1,15 @@
+@use 'src/styles/modules/variables.scss' as *;
+
+.inputContainer {
+  display: flex;
+  padding: 14px;
+  background-color: $white;
+
+  .input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: $black;
+  }
+}
