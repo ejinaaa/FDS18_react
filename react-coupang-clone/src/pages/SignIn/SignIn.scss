@@ -1,0 +1,57 @@
+@use 'src/styles/modules/variables.scss' as *;
+
+.logoLink {
+  width: 246px;
+  height: 56px;
+  margin-top: 108px;
+}
+
+.formContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 576px;
+  margin-top: 30px;
+
+  .iconInputContainer {
+    margin-bottom: 16px;
+  }
+
+  .middle {
+    width: 576px;
+    display: flex;
+    justify-content: space-between;
+
+    .link {
+      display: flex;
+      align-items: flex-start;
+      color: $blue;
+      font-size: 18px;
+      text-decoration: none;
+
+      .arrow {
+        height: 18px;
+        margin-left: 8px;
+      }
+    }
+  }
+
+  .button {
+    width: 575px;
+    height: 66px;
+    margin: 22px 0;
+
+    &:last-child {
+      margin-bottom: 42px;
+    }
+  }
+
+  .line {
+    width: 575px;
+    border-top: 1px solid $light-gray;
+  }
+
+  .copyright {
+    margin-top: 42px;
+  }
+}
