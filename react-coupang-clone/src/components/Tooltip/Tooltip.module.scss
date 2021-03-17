@@ -1,0 +1,56 @@
+@use 'src/styles/modules/variables.scss' as *;
+
+.speechBubble {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 300px;
+  padding: 7px 6px;
+  background: $vivid-white;
+  color: $dark-gray;
+  font-size: 12px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: {
+      width: 8px;
+      style: solid;
+      color: transparent;
+    }
+  }
+}
+
+.top::after {
+  top: 0;
+  left: 5px;
+  border-bottom-color: $vivid-white;
+  border-top: 0;
+  margin-top: -8px;
+}
+
+.right::after {
+  right: 0;
+  top: 4px;
+  border-left-color: $vivid-white;
+  border-right: 0;
+  margin-right: -8px;
+}
+
+.bottom::after {
+  bottom: 0;
+  left: 10px;
+  border-top-color: $vivid-white;
+  border-bottom: 0;
+  margin-bottom: -8px;
+}
+
+.left::after {
+  left: 0;
+  top: 4px;
+  border-right-color: $vivid-white;
+  border-left: 0;
+  margin-left: -8px;
+}
