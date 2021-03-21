@@ -3,7 +3,11 @@ import Heading from '../../components/Heading/Heading';
 import SearchBox from '../../containers/SearchBox/SearchBox';
 import MovieList from '../../containers/MovieList/MovieList';
 import { ReactComponent as Loading } from '../../assets/loading.svg';
-import './Movie.scss';
+import {
+  searchMovieContainer,
+  title,
+  movieCount as movieCountStyle,
+} from './Movie.module.scss';
 
 export default function SearchMovie(props) {
   const [movieList, setMovieList] = React.useState([]);
@@ -23,7 +27,7 @@ export default function SearchMovie(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        if (res.data.movie_count !== 0) {
+        if (res.data.movie_count > 0) {
           setMovieList(res.data.movies);
           setMovieCount(res.data.movie_count);
           setHasMovie(true);
@@ -38,8 +42,32 @@ export default function SearchMovie(props) {
       });
   };
 
+  const renderSpinner = () => (
+    <>
+      <Loading />
+      <Loading />
+      <Loading />
+      <Loading />
+    </>
+  );
+
+  const renderList = () => (
+    <>
+      <SearchBox handler={searchMovie} />
+      {hasMovie ? (
+        <>
+          <p className={movieCountStyle}>{movieCount} RESULTS</p>
+          <MovieList movieList={movieList} />
+        </>
+      ) : (
+        <Heading level={2}>No results found. Try again!</Heading>
+      )}
+    </>
+  );
+
   React.useEffect(() => {
     setIsLoading(true);
+
     fetch(`https://yts.mx/api/v2/list_movies.json`)
       .then((res) => res.json())
       .then((res) => {
@@ -54,33 +82,15 @@ export default function SearchMovie(props) {
       });
   }, []);
 
-  if (isLoading)
-    return (
-      <>
-        <Loading />
-        <Loading />
-        <Loading />
-        <Loading />
-      </>
-    );
-
   if (hasError)
     return React.createElement(`h${1}`, {
       children: hasError.message,
     });
 
   return (
-    <div className="searchMovieContainer">
-      <Heading level={1} className="title" children="Movies" />
-      <SearchBox handler={searchMovie} />
-      {hasMovie ? (
-        <>
-          <p className="movieCount">{movieCount} RESULTS</p>
-          <MovieList movieList={movieList} />
-        </>
-      ) : (
-        <Heading level={2}>No results found. Try again!</Heading>
-      )}
+    <div className={searchMovieContainer}>
+      <Heading level={1} className={title} children="Movies" />
+      {isLoading ? renderSpinner() : renderList()}
     </div>
   );
 }
